@@ -1,0 +1,204 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-jakarta);
+  --font-display: var(--font-anton);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  /* Second Home brand palette */
+  --color-brand: var(--brand-red);
+  --color-brand-dark: var(--brand-red-dark);
+  --color-brand-deep: var(--brand-red-deep);
+  --color-ink: var(--brand-black);
+  --color-ink-soft: var(--brand-black-soft);
+  --color-cream: var(--brand-cream);
+  --color-cream-dark: var(--brand-cream-dark);
+}
+
+:root {
+  --radius: 0.75rem;
+
+  /* Second Home Coffee — merah, hitam, cream */
+  --brand-red: #c8102e;
+  --brand-red-dark: #9e0b23;
+  --brand-red-deep: #6d0718;
+  --brand-black: #141010;
+  --brand-black-soft: #221b1a;
+  --brand-cream: #f6f1e7;
+  --brand-cream-dark: #e9e0cf;
+
+  --background: var(--brand-cream);
+  --foreground: #1a1512;
+  --card: #fffdf8;
+  --card-foreground: #1a1512;
+  --popover: #fffdf8;
+  --popover-foreground: #1a1512;
+  --primary: #c8102e;
+  --primary-foreground: #fff8f0;
+  --secondary: #efe7d8;
+  --secondary-foreground: #1a1512;
+  --muted: #efe7d8;
+  --muted-foreground: #6f635a;
+  --accent: #f8e9e6;
+  --accent-foreground: #9e0b23;
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: rgba(26, 21, 18, 0.12);
+  --input: rgba(26, 21, 18, 0.16);
+  --ring: #c8102e;
+  --sidebar: #f6f1e7;
+  --sidebar-foreground: #1a1512;
+  --sidebar-primary: #c8102e;
+  --sidebar-primary-foreground: #fff8f0;
+  --sidebar-accent: #efe7d8;
+  --sidebar-accent-foreground: #1a1512;
+  --sidebar-border: rgba(26, 21, 18, 0.12);
+  --sidebar-ring: #c8102e;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "ss01";
+  }
+  ::selection {
+    background: var(--brand-red);
+    color: var(--brand-cream);
+  }
+}
+
+/* ===== Lenis smooth scroll ===== */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* ===== Marquee ===== */
+@keyframes marquee-x {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.animate-marquee {
+  animation: marquee-x 28s linear infinite;
+}
+.animate-marquee-slow {
+  animation: marquee-x 46s linear infinite;
+}
+.marquee-paused:hover .animate-marquee,
+.marquee-paused:hover .animate-marquee-slow {
+  animation-play-state: paused;
+}
+
+/* ===== Hormati preferensi reduced motion ===== */
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee,
+  .animate-marquee-slow,
+  .animate-ping {
+    animation: none;
+  }
+}
+
+/* ===== Tekstur & ornamen ===== */
+.bg-dots-light {
+  background-image: radial-gradient(
+    rgba(246, 241, 231, 0.14) 1.2px,
+    transparent 1.2px
+  );
+  background-size: 16px 16px;
+}
+.bg-dots-dark {
+  background-image: radial-gradient(
+    rgba(26, 21, 18, 0.08) 1.2px,
+    transparent 1.2px
+  );
+  background-size: 16px 16px;
+}
+.bg-grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.5;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+}
+
+.text-outline-cream {
+  -webkit-text-stroke: 1.5px rgba(246, 241, 231, 0.22);
+  color: transparent;
+}
+.text-outline-ink {
+  -webkit-text-stroke: 1.5px rgba(26, 21, 18, 0.16);
+  color: transparent;
+}
+
+/* ===== Scrollbar gelap untuk panel menu ===== */
+.nice-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+.nice-scroll::-webkit-scrollbar-track {
+  background: rgba(246, 241, 231, 0.06);
+  border-radius: 999px;
+}
+.nice-scroll::-webkit-scrollbar-thumb {
+  background: rgba(200, 16, 46, 0.65);
+  border-radius: 999px;
+}
+
+/* ===== Titik-titik penghubung menu (leader dots) ===== */
+.leader-dots {
+  background-image: radial-gradient(
+    circle,
+    currentColor 1px,
+    transparent 1.5px
+  );
+  background-size: 8px 3px;
+  background-repeat: repeat-x;
+  background-position: bottom;
+}

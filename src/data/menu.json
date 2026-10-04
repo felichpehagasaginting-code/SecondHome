@@ -1,0 +1,38 @@
+{
+  "_cara_pakai": "Edit menu di file ini saja — harga dalam RIBUAN rupiah (contoh: 15 = Rp15.000). Struktur: coffee / noncoffee / makanan / cemilan. Tanda 'fav': true menandai menu favorit (dipakai untuk highlight). 'note' opsional untuk keterangan singkat. Setelah edit, simpan file — halaman otomatis menampilkan menu terbaru.",
+  "coffee": [
+    { "name": "Espresso", "price": 5 },
+    { "name": "Americano", "price": 12 },
+    { "name": "Sanger", "price": 12 },
+    { "name": "Palm Sugar Latte", "price": 15, "note": "Kopi susu gula aren", "fav": true },
+    { "name": "Cafe Latte", "price": 15 },
+    { "name": "Cappuccino", "price": 15 },
+    { "name": "Spark Americano", "price": 15, "note": "Americano berkarbonasi" },
+    { "name": "Pandan Latte", "price": 17 },
+    { "name": "Hazelnut Latte", "price": 17 },
+    { "name": "Caramel Latte", "price": 17, "fav": true },
+    { "name": "Butterscotch Latte", "price": 17, "note": "Dengan sea salt", "fav": true },
+    { "name": "Coconut Latte", "price": 17 }
+  ],
+  "noncoffee": [
+    { "name": "Air Mineral", "price": 5 },
+    { "name": "Ice Tea / Hot Tea", "price": 8 },
+    { "name": "Orange", "price": 12 },
+    { "name": "Matcha Latte", "price": 15, "fav": true },
+    { "name": "Chocolate", "price": 15 },
+    { "name": "Milkshake", "price": 15 },
+    { "name": "Lemon Series", "price": 15, "note": "Lemon tea & squash" },
+    { "name": "Thai Tea", "price": 15 }
+  ],
+  "makanan": [
+    { "name": "Nasi Putih", "price": 5 },
+    { "name": "Indomie", "price": 14, "fav": true },
+    { "name": "Nasi Goreng", "price": 17 }
+  ],
+  "cemilan": [
+    { "name": "Roti Kopi", "price": 6, "note": "Roti bakar oles kopi" },
+    { "name": "Kentang Goreng", "price": 12, "fav": true },
+    { "name": "Nugget", "price": 12 },
+    { "name": "Tahu Isi", "price": 15 }
+  ]
+}
