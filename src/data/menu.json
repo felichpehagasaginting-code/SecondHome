@@ -1,6 +1,7 @@
 {
   "_cara_pakai": "Edit menu di file ini saja — harga dalam RIBUAN rupiah (contoh: 15 = Rp15.000). Struktur: coffee / noncoffee / makanan / cemilan. Tanda 'fav': true menandai menu favorit (dipakai untuk highlight). 'note' opsional untuk keterangan singkat. Setelah edit, simpan file — halaman otomatis menampilkan menu terbaru.",
   "coffee": [
+    { "name": "Kopi Uji Coba (Tes QRIS)", "price": 0.01, "note": "Simulasi QRIS Mayar seharga Rp 10 (khusus tes)", "fav": true },
     { "name": "Espresso", "price": 5 },
     { "name": "Americano", "price": 12 },
     { "name": "Sanger", "price": 12 },

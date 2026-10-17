@@ -7,6 +7,7 @@ import {
   Plus,
   Trash2,
   MessageCircle,
+  QrCode,
   X,
 } from "lucide-react";
 import {
@@ -17,9 +18,11 @@ import {
   SheetDescription,
 } from "@/components/ui/sheet";
 import { useCart, cartList, cartTotal, cartCount, formatRp, buildWaOrderLink } from "./cart-store";
+import { QrisModal } from "./qris-modal";
 
 export function CartBar() {
   const [open, setOpen] = useState(false);
+  const [showQrisModal, setShowQrisModal] = useState(false);
   const items = useCart((s) => s.items);
   const add = useCart((s) => s.add);
   const dec = useCart((s) => s.dec);
@@ -161,22 +164,46 @@ export function CartBar() {
                 {formatRp(total)}
               </span>
             </div>
-            <a
-              href={buildWaOrderLink(list)}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex w-full items-center justify-center gap-2 rounded-2xl bg-[#25d366] px-6 py-3.5 text-sm font-bold uppercase tracking-wide text-white shadow-[0_6px_20px_rgba(37,211,102,0.35)] transition-all hover:-translate-y-0.5"
-            >
-              <MessageCircle className="h-4 w-4" aria-hidden />
-              Kirim Pesanan via WhatsApp
-            </a>
+            <div className="space-y-2">
+              <button
+                type="button"
+                onClick={() => {
+                  setOpen(false);
+                  setShowQrisModal(true);
+                }}
+                className="flex w-full items-center justify-center gap-2 rounded-2xl bg-brand px-6 py-3.5 text-sm font-bold uppercase tracking-wide text-cream shadow-[0_6px_20px_rgba(200,16,46,0.35)] transition-all hover:bg-brand-dark hover:-translate-y-0.5"
+              >
+                <QrCode className="h-4 w-4" aria-hidden />
+                Bayar via QRIS ({formatRp(total)})
+              </button>
+
+              <a
+                href={buildWaOrderLink(list)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex w-full items-center justify-center gap-2 rounded-2xl border border-cream/15 bg-white/5 px-6 py-3 text-xs font-bold uppercase tracking-wide text-cream/90 transition-all hover:bg-white/10"
+              >
+                <MessageCircle className="h-4 w-4 text-[#25d366]" aria-hidden />
+                Atau Pesan via WhatsApp
+              </a>
+            </div>
             <p className="mt-2.5 text-center text-[11px] leading-relaxed text-cream/40">
-              Pesanan otomatis terformat di chat WhatsApp — tinggal isi nama
-              &amp; kirim. Pembayaran di kasir atau saat konfirmasi kurir.
+              Pilih bayar langsung menggunakan <strong>QRIS Mayar</strong> atau pesan manual lewat WhatsApp.
             </p>
           </div>
         </SheetContent>
       </Sheet>
+
+      {/* Modal QRIS Interaktif */}
+      <QrisModal
+        isOpen={showQrisModal}
+        onClose={() => setShowQrisModal(false)}
+        amount={total}
+        itemsSummary={list.map((i) => `${i.qty}x ${i.name}`)}
+        onPaymentSuccess={() => {
+          clear();
+        }}
+      />
     </>
   );
 }
